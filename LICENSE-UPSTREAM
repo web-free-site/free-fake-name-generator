@@ -1,0 +1,5 @@
+This site incorporates patterns and generatePerson logic adapted from:
+- RandomAmericanGenerator (https://github.com/B-52405/RandomAmericanGenerator)
+- @faker-js/faker — MIT License (https://github.com/faker-js/faker)
+
+The MIT-licensed Faker.js library is included as an npm dependency; see node_modules/@faker-js/faker/LICENSE.
