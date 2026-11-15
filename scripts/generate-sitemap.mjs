@@ -3,6 +3,8 @@ import path from 'node:path'
 
 const HOST = 'https://free-fake-name-generator.web-free.site'
 const paths = [
+  "/how-to-generate-test-user-data-for-qa",
+  "/how-to-create-dummy-names-for-a-demo",
   '/',
   '/random-name-generator',
   '/fake-identity-generator',
