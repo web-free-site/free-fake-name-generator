@@ -1,4 +1,5 @@
 import { SITE } from '../site'
+import { HOME_ARTICLE_SECTIONS } from './homeArticle'
 
 export interface SeoPage {
   path: string
@@ -8,6 +9,7 @@ export interface SeoPage {
   h1: string
   keywords: string
   paragraphs: string[]
+  articleSections?: { heading: string; paragraphs: string[]; steps?: string[] }[]
   faq: { q: string; a: string }[]
   focus?: 'home' | 'random-name' | 'full-identity'
 }
@@ -16,29 +18,36 @@ export const SEO_PAGES: SeoPage[] = [
   {
     path: '/',
     locale: 'en',
-    title: 'Free Fake Name Generator — random test identities by country',
+    title: 'Free Fake Name Generator — random test names & emails (no sign-up)',
     description:
-      'Generate fake names, emails, phones, addresses, and jobs for software testing. Pick country and gender. Export CSV or JSON. No sign-up, browser-only.',
-    h1: 'Free fake name and identity generator for testing',
+      'Free fake name generator for QA: random names, emails, phones, addresses, and jobs by country. Export CSV or JSON. Runs in your browser—nothing uploaded.',
+    h1: 'Free Fake Name Generator',
     keywords: 'fake name generator, random name generator, fake identity, test data',
     focus: 'home',
     paragraphs: [
-      'Free Fake Name Generator creates realistic-looking but fictional person profiles for QA, staging, and demos. Choose a country locale and optional gender, then copy individual fields or export up to 100 rows at once.',
-      'Unlike sites that pull real APIs, everything runs client-side with @faker-js/faker. We do not output government ID numbers, passport numbers, or credit card numbers that pass Luhn checks — only safe contact-style fields.',
-      'Use it as a lightweight alternative to fakedetail.com when you need names, birthdays, usernames, emails, phones, addresses, and job titles without storing data on a server.',
+      'Generate random fake names and full test identities for QA, staging, and product demos. Pick a country and optional gender, then copy fields or export up to 100 rows as CSV or JSON.',
     ],
+    articleSections: HOME_ARTICLE_SECTIONS,
     faq: [
       {
         q: 'Is this fake name generator free?',
-        a: 'Yes. There is no account and no export limit beyond 100 rows per download.',
+        a: 'Yes. There is no account, no paywall, and no per-day cap. You can export up to 100 fictional personas per CSV or JSON download.',
       },
       {
-        q: 'Can I use the data in production databases?',
-        a: 'Use generated data only in non-production test environments unless your policy allows synthetic PII.',
+        q: 'Does the generator send my data to a server?',
+        a: 'No. Names and related fields are created locally in your browser with @faker-js/faker. We do not store the identities you generate on our servers.',
       },
       {
-        q: 'Which countries are supported?',
-        a: 'Over 20 locales including US, UK, France, Germany, Brazil, Japan, and more.',
+        q: 'Which countries and locales are supported?',
+        a: 'You can choose from more than twenty locales, including the United States, United Kingdom, Canada, France, Germany, Brazil, Japan, and several others, so formatting matches regional expectations.',
+      },
+      {
+        q: 'Can I use fake names in production databases?',
+        a: 'Use generated records only in staging, QA, demos, and other non-production environments unless your security policy explicitly permits synthetic personal data in production.',
+      },
+      {
+        q: 'Why are credit cards and government IDs not included?',
+        a: 'To reduce misuse, this tool outputs contact-style test fields only. It does not generate passport numbers, tax IDs, or payment card numbers that pass validation checks.',
       },
     ],
   },
@@ -57,7 +66,10 @@ export const SEO_PAGES: SeoPage[] = [
       'All generation happens in your browser; nothing is logged on our servers.',
     ],
     faq: [
-      { q: 'Are these real people?', a: 'No. Names are algorithmically generated and may occasionally match real individuals by chance.' },
+      {
+        q: 'Are these real people?',
+        a: 'No. Names are algorithmically generated and may occasionally match real individuals by chance.',
+      },
       { q: 'How do I bulk-generate names?', a: 'Set bulk count and click Download CSV or JSON.' },
     ],
   },

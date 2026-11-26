@@ -191,10 +191,29 @@
 .seo-content {
   margin-top: 2.5rem;
   max-width: 48rem;
+  line-height: 1.6;
 
   h2 {
     font-family: Fraunces, Georgia, serif;
     margin-top: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    margin: 1.25rem 0 0.5rem;
+  }
+
+  .seo-hub-links a {
+    color: $color-brand;
+  }
+
+  .seo-steps {
+    margin: 0.5rem 0 1rem;
+    padding-left: 1.25rem;
+
+    li {
+      margin-bottom: 0.45rem;
+    }
   }
 }
 
