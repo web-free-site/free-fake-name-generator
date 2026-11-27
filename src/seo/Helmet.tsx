@@ -39,6 +39,11 @@ export function usePageMeta() {
     const ogUrl = document.querySelector('meta[property="og:url"]')
     if (ogUrl) ogUrl.setAttribute('content', canonical.href)
 
+    const twTitle = document.querySelector('meta[name="twitter:title"]')
+    if (twTitle) twTitle.setAttribute('content', page.title)
+    const twDesc = document.querySelector('meta[name="twitter:description"]')
+    if (twDesc) twDesc.setAttribute('content', page.description)
+
     document.documentElement.lang = page.locale
   }, [location.pathname, page])
 }

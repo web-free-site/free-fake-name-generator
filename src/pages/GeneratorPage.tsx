@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo, useState } from 'react'
+import { FC, Fragment, useCallback, useMemo, useState } from 'react'
 import { Locale, t } from '../i18n/messages'
 import { COUNTRIES, type GenderOption } from '../lib/countries'
 import {
@@ -9,6 +9,7 @@ import {
 } from '../lib/generateIdentity'
 import { downloadCsv, downloadJson, identityPlainText } from '../lib/export'
 import { JsonLd } from '../components/JsonLd'
+import { HOME_GUIDE_URL, HOME_HUB_REF } from '../seo/homeArticle'
 import { pageForPath } from '../seo/pages'
 import { AdSlot } from '../components/ads/AdSlot'
 
@@ -53,7 +54,9 @@ export const GeneratorPage: FC<Props> = ({ locale, seoPath, focus = 'home' }) =>
   const displayFields = useMemo(() => {
     if (focus === 'random-name') {
       return IDENTITY_FIELDS.filter((f) =>
-        ['fullName', 'firstName', 'lastName', 'gender', 'username', 'email', 'country'].includes(f.key),
+        ['fullName', 'firstName', 'lastName', 'gender', 'username', 'email', 'country'].includes(
+          f.key,
+        ),
       )
     }
     return IDENTITY_FIELDS
@@ -167,14 +170,48 @@ export const GeneratorPage: FC<Props> = ({ locale, seoPath, focus = 'home' }) =>
 
       <AdSlot slot="content300x250" className="ad-content" />
 
-      <section className="seo-content">
-        <h2>{t(locale, 'howToTitle')}</h2>
-        {seo.paragraphs.slice(1).map((p, i) => (
-          <p key={i}>{p}</p>
-        ))}
+      <section className="seo-content" aria-labelledby="seo-article-title">
+        {seo.articleSections ? (
+          <>
+            <h2 id="seo-article-title">{t(locale, 'howToTitle')}</h2>
+            <p className="seo-hub-links">
+              Part of the{' '}
+              <a href={HOME_HUB_REF} rel="noopener noreferrer">
+                Web Free
+              </a>{' '}
+              tool network. For a longer walkthrough, see the{' '}
+              <a href={HOME_GUIDE_URL} rel="noopener noreferrer">
+                fake name and email generator for QA guide
+              </a>
+              .
+            </p>
+            {seo.articleSections.map((section) => (
+              <Fragment key={section.heading}>
+                <h3>{section.heading}</h3>
+                {section.paragraphs.map((p) => (
+                  <p key={p.slice(0, 48)}>{p}</p>
+                ))}
+                {section.steps ? (
+                  <ol className="seo-steps">
+                    {section.steps.map((step) => (
+                      <li key={step.slice(0, 48)}>{step}</li>
+                    ))}
+                  </ol>
+                ) : null}
+              </Fragment>
+            ))}
+          </>
+        ) : (
+          <>
+            <h2 id="seo-article-title">{t(locale, 'howToTitle')}</h2>
+            {seo.paragraphs.slice(1).map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </>
+        )}
         {seo.faq.length > 0 ? (
           <>
-            <h2>FAQ</h2>
+            <h2>Frequently asked questions</h2>
             <dl className="faq">
               {seo.faq.map((f) => (
                 <div key={f.q}>
@@ -187,7 +224,11 @@ export const GeneratorPage: FC<Props> = ({ locale, seoPath, focus = 'home' }) =>
         ) : null}
       </section>
 
-      {toast ? <div className="toast" role="status">{toast}</div> : null}
+      {toast ? (
+        <div className="toast" role="status">
+          {toast}
+        </div>
+      ) : null}
     </article>
   )
 }
