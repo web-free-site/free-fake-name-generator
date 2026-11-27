@@ -1,53 +1,8 @@
-/** Homepage SEO article (English). Kept in a separate file for easier word-count checks. */
+/** Homepage SEO article (English). Single source: homeStaticSeo.json for app + build prerender. */
 
-export const HOME_HUB_REF = 'https://web-free.site/?ref=free-fake-name-generator'
-export const HOME_GUIDE_URL =
-  'https://web-free.site/guides/fake-name-email-generator-qa-csv/?ref=free-fake-name-generator'
+import homeStatic from './homeStaticSeo.json'
 
-export const HOME_ARTICLE_SECTIONS: {
-  heading: string
-  paragraphs: string[]
-  steps?: string[]
-}[] = [
-  {
-    heading: 'What this free fake name generator does',
-    paragraphs: [
-      'A fake name generator helps QA engineers, developers, and designers create believable person records without touching real identities. This Free Fake Name Generator builds full test profiles in your browser: given name, family name, username, email, phone number, mailing address, birthday, job title, and employer. Every value is fictional, yet formatted the way signup flows and admin tables expect.',
-      'Country selection matters for localization testing. Pick United States, United Kingdom, France, Germany, Brazil, Japan, or another supported locale so names, phone patterns, and address lines match what your product shows in that market. Optional gender filtering lets you exercise validation rules that depend on title fields or pronoun copy without hard-coding fixtures by hand.',
-      'Unlike API-heavy identity sites, generation runs entirely client-side with the open-source @faker-js/faker library. There is no queue, no rate limit, and no account wall. Refresh once for a single persona, or export up to one hundred rows as CSV or JSON for database seeds and automated tests. We deliberately exclude government ID numbers, passport numbers, and payment card numbers that could pass checksum validation—only safe contact-style fields appear on the card.',
-    ],
-  },
-  {
-    heading: 'How to use the generator (step by step)',
-    paragraphs: [
-      'The workflow below takes less than a minute for a single profile or a small batch. You can repeat it whenever staging data goes stale.',
-    ],
-    steps: [
-      'Open the generator and read the disclaimer: output is for software testing, staging, and demos—not for impersonation or fraud.',
-      'Choose a country from the dropdown so names and address formatting match your target locale.',
-      'Set gender to male, female, or any, depending on whether your test case needs a specific profile shape.',
-      'Click Generate identity (or Generate new) until the card shows fields that fit your scenario.',
-      'Copy individual fields with the Copy chips, use Copy all fields for a plaintext block, or set bulk count (1–100) and download CSV or JSON for your test suite.',
-      'Store exports in non-production environments unless your security policy explicitly allows synthetic personally identifiable information in production.',
-    ],
-  },
-  {
-    heading: 'Privacy: everything stays in your browser',
-    paragraphs: [
-      'Security reviews often flag third-party test-data APIs because identities leave the corporate network. This tool never uploads the people you generate. Faker runs locally in the tab; clipboard copies and file downloads are created on your device. We do not log generated names on a server, and refreshing the page clears the in-memory profile unless you saved an export file yourself.',
-      'That local-only model helps when you work on a VPN, in a locked-down CI laptop, or on public Wi-Fi while demoing a prototype. It also means you should treat downloaded CSV and JSON like any other test fixture: store them in version control or secrets-safe buckets, not in customer-facing attachments.',
-      'Advertising on the page is served by standard display networks and is unrelated to the generator logic. The fake data you create is not sent to advertisers as part of the generation step.',
-    ],
-  },
-  {
-    heading: 'Common use cases',
-    paragraphs: [
-      'Signup and profile forms: fill multi-step wizards with varied emails and usernames to test validation, duplicate detection, and character limits without using colleagues’ real addresses.',
-      'Checkout and CRM demos: seed a staging CRM or e-commerce admin with names, phones, and job titles so screenshots and walkthrough videos look populated.',
-      'Load and integration tests: export a batch of JSON rows and feed them into Playwright, Cypress, or Postman collections that create test users through your API.',
-      'Design and content reviews: give UX writers realistic strings for empty states, tables, and notification templates before backend endpoints exist.',
-      'Training and classrooms: let students practice data import exercises with obviously synthetic people instead of copying names from the open web.',
-      'If you need addresses without full personas, pair this tool with other utilities on the Web Free network, or follow the dedicated walkthrough for CSV and JSON personas linked below.',
-    ],
-  },
-]
+export const HOME_HUB_REF = homeStatic.hubRef
+export const HOME_GUIDE_URL = homeStatic.guideUrl
+export const HOME_ARTICLE_SECTIONS = homeStatic.articleSections
+export const HOME_FAQ = homeStatic.faq
