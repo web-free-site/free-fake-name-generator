@@ -1,5 +1,6 @@
 import { SITE } from '../site'
-import { HOME_ARTICLE_SECTIONS } from './homeArticle'
+import { HOME_ARTICLE_SECTIONS, HOME_FAQ } from './homeArticle'
+import homeStatic from './homeStaticSeo.json'
 
 export interface SeoPage {
   path: string
@@ -21,35 +22,12 @@ export const SEO_PAGES: SeoPage[] = [
     title: 'Free Fake Name Generator — random test names & emails (no sign-up)',
     description:
       'Free fake name generator for QA: random names, emails, phones, addresses, and jobs by country. Export CSV or JSON. Runs in your browser—nothing uploaded.',
-    h1: 'Free Fake Name Generator',
+    h1: homeStatic.h1,
     keywords: 'fake name generator, random name generator, fake identity, test data',
     focus: 'home',
-    paragraphs: [
-      'Generate random fake names and full test identities for QA, staging, and product demos. Pick a country and optional gender, then copy fields or export up to 100 rows as CSV or JSON.',
-    ],
+    paragraphs: [homeStatic.lead],
     articleSections: HOME_ARTICLE_SECTIONS,
-    faq: [
-      {
-        q: 'Is this fake name generator free?',
-        a: 'Yes. There is no account, no paywall, and no per-day cap. You can export up to 100 fictional personas per CSV or JSON download.',
-      },
-      {
-        q: 'Does the generator send my data to a server?',
-        a: 'No. Names and related fields are created locally in your browser with @faker-js/faker. We do not store the identities you generate on our servers.',
-      },
-      {
-        q: 'Which countries and locales are supported?',
-        a: 'You can choose from more than twenty locales, including the United States, United Kingdom, Canada, France, Germany, Brazil, Japan, and several others, so formatting matches regional expectations.',
-      },
-      {
-        q: 'Can I use fake names in production databases?',
-        a: 'Use generated records only in staging, QA, demos, and other non-production environments unless your security policy explicitly permits synthetic personal data in production.',
-      },
-      {
-        q: 'Why are credit cards and government IDs not included?',
-        a: 'To reduce misuse, this tool outputs contact-style test fields only. It does not generate passport numbers, tax IDs, or payment card numbers that pass validation checks.',
-      },
-    ],
+    faq: HOME_FAQ,
   },
   {
     path: '/random-name-generator',

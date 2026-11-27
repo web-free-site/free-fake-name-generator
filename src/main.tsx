@@ -5,6 +5,8 @@ import App from './App'
 import './scss/main.scss'
 import { HelmetProvider } from './seo/Helmet'
 
+document.getElementById('seo-prerender')?.remove()
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <HelmetProvider>
